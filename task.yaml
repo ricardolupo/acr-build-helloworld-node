@@ -12,3 +12,4 @@ steps:
 # Push image
 - push: 
   - {{.Run.Registry}}/hello-world:{{.Run.ID}}
+  when: ["step2"]
