@@ -7,7 +7,7 @@ steps:
 - id: step2
   cmd: sysdig/sdc-cli:0.1.6-beta scanning image evaluation {{.Run.Registry}}/hello-world:{{.Run.ID}}
   env:
-    - SDC_SECURE_TOKEN="c2b4f6e9-ca54-4676-9b40-e5e15b527629"
+    - SDC_SECURE_TOKEN=""
     - SDC_SECURE_URL="https://secure.sysdig.com"
 # Push image
 #- id: step3
