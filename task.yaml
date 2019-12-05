@@ -2,14 +2,15 @@ version: v1.1.0
 steps:
 # Build target image
 - id: step1
-  build: -t $Registry/hello-world:$ID -f Dockerfile .
+  build: -t {{.Run.Registry}}/hello-world:{{.Run.ID}} -f Dockerfile .
 # Run image 
 - id: step2
-  cmd: bash3.0
-  detach: true
-    - cmd: bash echo Starting Sysdig Scan
-    - cmd: bash bash -s analyze -s https://secure.sysdig.com -k c2b4f6e9-ca54-4676-9b40-e5e15b527629 -P $Registry/hello-world:$ID
-    - cmd: bash curl -s https://raw.githubusercontent.com/sysdiglabs/secure-inline-scan/master/inline_scan.sh
+  cmd: anchore/engine-cli anchore-cli image addn {{.Run.Registry}}/hello-world:{{.Run.ID}}
+  env:
+    - ANCHORE_CLI_SSL_VERIFY=n 
+    - ANCHORE_CLI_URL=https://secure.sysdig.com/api/scanning/v1/anchore
+    - ANCHORE_CLI_USER=c2b4f6e9-ca54-4676-9b40-e5e15b527629
+    - ANCHORE_USER_PASS=''
 # Push image
 #- id: step3
 #  push: {{.Run.Registry}}/hello-world:{{.Run.ID}}
