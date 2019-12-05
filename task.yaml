@@ -5,9 +5,11 @@ steps:
   build: -t {{.Run.Registry}}/hello-world:{{.Run.ID}} -f Dockerfile .
 # Run image 
 - id: step2
-  cmd: bash3.0 echo Starting Sysdig Scan
-  cmd: bash:3.0 bash -s analyze -s https://secure.sysdig.com -k c2b4f6e9-ca54-4676-9b40-e5e15b527629 -P {{.Run.Registry}}/hello-world:{{.Run.ID}}
-  cmd: bash:3.0 curl -s https://raw.githubusercontent.com/sysdiglabs/secure-inline-scan/master/inline_scan.sh
+  cmd: bash3.0
+  detach: true
+  - cmd: bash3.0 echo Starting Sysdig Scan
+  - cmd: bash:3.0 bash -s analyze -s https://secure.sysdig.com -k c2b4f6e9-ca54-4676-9b40-e5e15b527629 -P {{.Run.Registry}}/hello-world:{{.Run.ID}}
+  - cmd: bash:3.0 curl -s https://raw.githubusercontent.com/sysdiglabs/secure-inline-scan/master/inline_scan.sh
 # Push image
 #- id: step3
 #  push: {{.Run.Registry}}/hello-world:{{.Run.ID}}
