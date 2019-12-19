@@ -5,8 +5,8 @@ steps:
     build: -t $Registry/hello-world:$ID -f Dockerfile .
 # Scan image 
   - id: scan
-    cmd: nginx
-    detach: true
-  - cmd: curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 $Registry/hello-world:$ID
+    cmd: sysdig/sdc-cli:0.1.6-beta scanning image inline-scan $Registry/hello-world:$ID
+    env:
+      - SDC_SECURE_TOKEN=c2b4f6e9-ca54-4676-9b40-e5e15b527629
 #- push: 
 #  - $Registry/hello-world:$ID
