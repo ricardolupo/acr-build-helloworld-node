@@ -11,6 +11,6 @@ steps:
     - ANCHORE_USER_PASS=''
   cmd: nginx
   detach: true
-- cmd: curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- $Registry/hello-world:$ID
+- cmd: curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 analyze $Registry/hello-world:$ID
 - push: 
   - $Registry/hello-world:$ID
