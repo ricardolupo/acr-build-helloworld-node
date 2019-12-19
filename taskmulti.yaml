@@ -1,0 +1,11 @@
+version: v1.1.0
+steps:
+# Build target image
+- build: -t $Registry/hello-world:$ID -f Dockerfile .
+# Scan image 
+- id: scan
+  cmd: nginx
+  detach: true
+  - cmd: curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- $Registry/hello-world:$ID
+- push: 
+  - $Registry/hello-world:$ID
