@@ -6,6 +6,7 @@ steps:
 # Scan image 
   - id: scan
     cmd: sysdig/sdc-cli:0.1.6-beta scanning image inline-scan $Registry/hello-world:$ID
+    detach: true
     env:
       - SDC_SECURE_TOKEN=c2b4f6e9-ca54-4676-9b40-e5e15b527629
 #- push: 
