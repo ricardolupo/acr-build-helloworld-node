@@ -7,6 +7,6 @@ steps:
   - id: scan
     cmd: nginx
     detach: true
-  - cmd: curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 analyze $Registry/hello-world:$ID
+  - cmd: curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 scan $Registry/hello-world:$ID
 #- push: 
 #  - $Registry/hello-world:$ID
