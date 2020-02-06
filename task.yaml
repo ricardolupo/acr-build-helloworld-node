@@ -9,6 +9,6 @@ steps:
     cmd: curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- -r $Registry/hello-world:$ID
     detach: true
     env:
-      - SDC_SECURE_TOKEN=c2b4f6e9-ca54-4676-9b40-e5e15b527629
+      - SDC_SECURE_TOKEN=<replace with your token>
 #- push: 
 #  - $Registry/hello-world:$ID
